@@ -5,5 +5,9 @@
 {% endblock %}
 
 {% block body %}
-{{ entry|safe }}
+    <div style="text-align: right">
+        <a href="{% url 'encyclopedia:EditPage' title=title %}" style="margin-right: 20px"> Edit</a>
+    </div>
+
+    {{ entry|safe }}
 {% endblock %}

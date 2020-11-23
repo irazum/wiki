@@ -1,0 +1,21 @@
+{% extends 'encyclopedia/layout.html' %}
+
+{% block title %}
+    Edit {{ title }}
+{% endblock %}
+
+{% block body %}
+
+    <h2>Edit {{ title }}</h2>
+    <div>
+        Please, puts your corrects and press save-submit.
+    </div>
+
+    <form action="{% url 'encyclopedia:EditPage' title=title %}" method="POST">
+        {% csrf_token %}
+        <div>
+            <textarea name="content" cols="80" rows="25" placeholder="write your entry using markdown-language">{{ entry }}</textarea>
+        </div>
+        <input type="submit" value="Save changes">
+    </form>
+{% endblock %}

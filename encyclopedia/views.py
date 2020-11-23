@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.http import Http404
 import markdown2
+from django.urls import reverse
 
 from . import util
 
@@ -28,10 +29,11 @@ def send_search(request):
     data = util.get_entry(search)
     if data is not None:
         # отправляем html-страницу искомой статьи
-        return render(request, "encyclopedia/entry.html", {
-            'title': data[0],
-            'entry': markdown2.markdown(data[1])
-        })
+        # return render(request, "encyclopedia/entry.html", {
+        #     'title': data[0],
+        #     'entry': markdown2.markdown(data[1])
+        # })
+        return redirect(f'/{data[0]}')
     else:
         search_results = []
         entries_list = util.list_entries()
@@ -54,12 +56,23 @@ def new_page(request):
             })
         else:
             util.save_entry(request.POST['title'], request.POST['content'])
-            return render(request, "encyclopedia/entry.html", {
-                'title': request.POST['title'],
-                'entry': markdown2.markdown(request.POST['content'])
-            })
+            # return render(request, "encyclopedia/entry.html", {
+            #     'title': request.POST['title'],
+            #     'entry': markdown2.markdown(request.POST['content'])
+            # })
+            return redirect(f"/{request.POST['title']}")
     # если не POST-метод
     return render(request, "encyclopedia/newpage.html")
 
+
+def edit_page(request, title):
+    if request.method == "POST":
+        util.save_entry(title, request.POST['content'])
+        return redirect(f"/{title}")
+
+    return render(request, "encyclopedia/editpage.html", {
+        'title': title,
+        'entry': util.get_entry(title)[1]
+    })
 
 
