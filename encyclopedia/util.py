@@ -32,13 +32,13 @@ def get_entry(title):
     If no such entry exists, the function returns None.
     """
     try:
-        # можно сделать чтобы заглавные буквы были эквивалентны строчным
-        # для этого можно исп-ть ф-ию list_entries и рег-ые выражения
         for name in list_entries():
             if title.lower() == name.lower():
                 title = name
                 break
         f = default_storage.open(f"entries/{title}.md")
+        # title возвращается для того, чтобы у одной и той же статьи
+        # не было разных заголовков
         return title, f.read().decode("utf-8")
     except FileNotFoundError:
         return None

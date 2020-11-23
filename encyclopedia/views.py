@@ -43,5 +43,23 @@ def send_search(request):
             "search_request": search
         })
 
-# def test_func(request):
-#     return HttpResponse("Test")
+
+def new_page(request):
+    if request.method == 'POST':
+        # если статья с таким заголовком уже есть
+        data = util.get_entry(request.POST['title'])
+        if data is not None:
+            return render(request, "encyclopedia/newpage.html", {
+            "error": True
+            })
+        else:
+            util.save_entry(request.POST['title'], request.POST['content'])
+            return render(request, "encyclopedia/entry.html", {
+                'title': request.POST['title'],
+                'entry': markdown2.markdown(request.POST['content'])
+            })
+    # если не POST-метод
+    return render(request, "encyclopedia/newpage.html")
+
+
+

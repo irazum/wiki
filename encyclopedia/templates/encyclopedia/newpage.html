@@ -1,0 +1,29 @@
+{% extends 'encyclopedia/layout.html' %}
+
+{% block title %}
+    New Page
+{% endblock %}
+
+{% block body %}
+    {% if error %}
+        <h2>Creating Error</h2>
+        <div>
+            This entry already created, you can edit the entry or write another entry.
+        </div>
+    {% else %}
+        <h2>Creating new entry</h2>
+        <div>
+            Please, before creating check your entry in search.
+            May be the entry has already been created.
+        </div>
+    {% endif %}
+
+    <form action="{% url 'encyclopedia:NewPage' %}" method="POST">
+        {% csrf_token %}
+        <div><input type="text" name="title" placeholder="write entries Title" style="margin-bottom: 10px"></div>
+        <div>
+            <textarea name="content" cols="80" rows="25" placeholder="write your entry using markdown-language"></textarea>
+        </div>
+        <input type="submit" value="Create entry">
+    </form>
+{% endblock %}
