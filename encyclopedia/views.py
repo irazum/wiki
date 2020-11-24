@@ -33,7 +33,7 @@ def send_search(request):
         #     'title': data[0],
         #     'entry': markdown2.markdown(data[1])
         # })
-        return redirect(f'/{data[0]}')
+        return redirect(reverse('encyclopedia:entry', kwargs={'title':data[0]}))
     else:
         search_results = []
         entries_list = util.list_entries()
