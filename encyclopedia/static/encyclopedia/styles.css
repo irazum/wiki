@@ -1,38 +1,52 @@
+/*не вижу смысла*/
+/*
 body {
     margin: 0;
     background-color: white;
 }
+*/
 
+/*не участвует*/
+/*
 code {
     white-space: pre;
 }
+*/
 
+/*внутренний отступ, почему не внешний?*/
 h1 {
     margin-top: 0px;
     padding-top: 20px;
 }
 
+/*не понятно, почему не воспользоваться стилями бутстрап*/
 textarea {
     height: 90vh;
     width: 80%;
 }
 
+/*вставляемый блок dy*/
+/*
 .main {
     padding: 10px;
 }
+*/
 
+/*не понятно, почему не бутстрап стили*/
 .search {
     width: 100%;
     font-size: 15px;
     line-height: 15px;
 }
 
+/* класс sidebar задействован во множественном наследовании с классами col-lg-2 и col-md-3 бутстрапа(gird)*/
 .sidebar {
     background-color: #f0f0f0;
-    height: 100vh;
+    height: 97.7vh;
     padding: 20px;
 }
 
+/*верхний заголовок в боковой панели*/
 .sidebar h2 {
     margin-top: 5px;
 }

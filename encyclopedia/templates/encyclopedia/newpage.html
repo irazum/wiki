@@ -22,8 +22,11 @@
         {% csrf_token %}
         <div><input type="text" name="title" placeholder="write entries Title" style="margin-bottom: 10px"></div>
         <div>
-            <textarea name="content" cols="80" rows="25" placeholder="write your entry using markdown-language"></textarea>
+            <textarea name="content" placeholder="write your entry using markdown-language"></textarea>
         </div>
-        <input type="submit" value="Create entry">
+        <div class="right-div">
+            <input type="submit" value="Create entry" class="btn btn-primary">
+        </div>
+
     </form>
 {% endblock %}

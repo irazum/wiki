@@ -14,8 +14,10 @@
     <form action="{% url 'encyclopedia:EditPage' title=title %}" method="POST">
         {% csrf_token %}
         <div>
-            <textarea name="content" cols="80" rows="25" placeholder="write your entry using markdown-language">{{ entry }}</textarea>
+            <textarea name="content" placeholder="write your entry using markdown-language">{{ entry }}</textarea>
         </div>
-        <input type="submit" value="Save changes">
+        <div class="right-div">
+            <input type="submit" value="Save changes" class="btn btn-primary">
+        </div>
     </form>
 {% endblock %}
