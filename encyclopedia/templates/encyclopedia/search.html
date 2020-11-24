@@ -11,7 +11,7 @@
     {% endif %}
     <ul>
         {% for title in search_results %}
-        <li><a href="/{{ title }}">{{ title }}</a></li>
+        <li><a href="{% url 'encyclopedia:entry' title=title %}">{{ title }}</a></li>
         {% endfor %}
     </ul>
 {% endblock %}

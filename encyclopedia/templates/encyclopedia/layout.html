@@ -1,7 +1,6 @@
 {% load static %}
 
 <!DOCTYPE html>
-
 <html lang="en">
     <head>
         <title>{% block title %}{% endblock %}</title>
@@ -25,7 +24,7 @@
                         <a href="{% url 'encyclopedia:NewPage' %}">Create New Page</a>
                     </div>
                     <div>
-                        <a href="/{{ context_random_page }}">Random Page</a>
+                        <a href="{% url 'encyclopedia:entry' title=context_random_page %}">Random Page</a>
                     </div>
                     {% block nav %}
                     {% endblock %}

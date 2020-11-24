@@ -60,7 +60,7 @@ def new_page(request):
             #     'title': request.POST['title'],
             #     'entry': markdown2.markdown(request.POST['content'])
             # })
-            return redirect(f"/{request.POST['title']}")
+            return redirect(reverse('encyclopedia:entry', kwargs={'title':request.POST['title']}))
     # если не POST-метод
     return render(request, "encyclopedia/newpage.html")
 
@@ -68,7 +68,7 @@ def new_page(request):
 def edit_page(request, title):
     if request.method == "POST":
         util.save_entry(title, request.POST['content'])
-        return redirect(f"/{title}")
+        return redirect(reverse('encyclopedia:entry', kwargs={'title':title}))
 
     return render(request, "encyclopedia/editpage.html", {
         'title': title,
